@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	</h:head>
+	
+	<h:body>
+	
+		<h:form>
+		<p:dataTable
+			var="caves"
+			value="#{caveAVinController.caves}"
+			sortBy="#{caves.caveName}">
+			
+			<p:column
+				headerText="Nom"
+				sortBy="#{caves.caveName}"
+				filterBy="#{caves.caveName}">
+				<h:outputText value="#{caves.caveName}" />
+			</p:column>
+			
+			<p:column
+				headerText="Temperature"
+				sortBy="#{caves.caveTemperature}"
+				filterBy="#{caves.caveTemperature}">
+				<h:outputText value="#{caves.caveTemperature}" />
+			</p:column>
+			
+			<p:column
+				headerText="Nbre de bouteilles"
+				sortBy="#{caves.quantite}"
+				filterBy="#{caves.quantite}">
+				<h:outputText value="#{caves.quantite}" />
+			</p:column>
+			
+			<p:column
+				headerText="Taille Max"
+				sortBy="#{caves.quantiteMax}"
+				filterBy="#{caves.quantiteMax}">
+				<h:outputText value="#{caves.quantiteMax}" />
+			</p:column>
+			
+			<p:column>
+				<p:commandButton
+					value="Acceder"
+					ajax="false">
+					<f:param
+						name="caveSelectionne"
+						value="#{cave}" />
+				</p:commandButton>
+			</p:column>
+			
+		</p:dataTable>
+		</h:form>
+		
+		<h:form>
+		<p:inputText
+			label="Nom"
+			value="#{caveAVinController.maNouvelleCave.caveName}"/>
+			
+		<p:inputText
+			label="Temperature"
+			value="#{caveAVinController.maNouvelleCave.caveTemperature}"/>
+			
+		<p:inputText
+			label="Qute Max"
+			value="#{caveAVinController.maNouvelleCave.quantiteMax}"/>
+			
+		<p:commandButton
+			value="Ajouter"
+			action="#{caveAVinController.ajouterNouvelleCave()}"
+			ajax = "false" />
+		</h:form>
+		
+	</h:body>
+	
+</html>

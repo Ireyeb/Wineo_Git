@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	</h:head>
+	
+	<h:body>
+	
+		<h:form>
+		
+		<f:viewParam
+			name="caveSelectionne"
+			value="#{bouteilleControleur.caveSelectionee}" />
+		
+		<p:commandButton
+			value="retour"
+			action="#{bouteilleController.backToCave()}"
+			ajax = "false" />
+			
+		<p:dataTable
+			var="bouteille"
+			value="#{bouteilleControleur.caveSelectionee.bouteilles}">
+			
+			<p:column
+				headerText="Designation"
+				sortBy="#{bouteille.designation}"
+				filterBy="#{bouteille.designation}">
+				<h:outputText value="#{bouteille.designation}" />
+			</p:column>
+			
+			<p:column
+				headerText="Region"
+				sortBy="#{bouteille.region}"
+				filterBy="#{bouteille.region}">
+				<h:outputText value="#{bouteille.region}" />
+			</p:column>
+			
+			<p:column
+				headerText="Couleur"
+				sortBy="#{bouteille.couleur}"
+				filterBy="#{bouteille.couleur}">
+				<h:outputText value="#{bouteille.couleur}" />
+			</p:column>
+			
+			<p:column
+				headerText="Annee"
+				sortBy="#{bouteille.annee}"
+				filterBy="#{bouteille.annee}">
+				<h:outputText value="#{bouteille.annee}" />
+			</p:column>
+			
+			<p:column
+				headerText="Contenance (L)"
+				sortBy="#{bouteille.contenance}"
+				filterBy="#{bouteille.contenance}">
+				<h:outputText value="#{bouteille.contenance}" />
+			</p:column>
+			
+			<p:column
+				headerText="BIO"
+				sortBy="#{bouteille.bio}"
+				filterBy="#{bouteille.bio}">
+				<h:outputText value="#{bouteille.bio ? 'BIO': ' '}" />
+			</p:column>
+			
+		</p:dataTable>
+		</h:form>
+		
+		<h:form>
+		<p:inputText
+			label="Designation"
+			value="#{bouteilleController.maNouvelleBouteille.designation}"/>
+			
+		<p:inputText
+			label="Region"
+			value="#{bouteilleController.maNouvelleBouteille.region}"/>
+			
+		<p:inputText
+			label="Couleur"
+			value="#{bouteilleController.maNouvelleBouteille.couleur}"/>
+			
+		<p:inputText
+			label="Annee"
+			value="#{bouteilleController.maNouvelleBouteille.annee}"/>
+			
+		<p:inputText
+			label="Contenance"
+			value="#{bouteilleController.maNouvelleBouteille.contenance}"/>
+			
+		<p:selectBooleanCheckbox
+			label="Bio"
+			value="#{bouteilleController.maNouvelleBouteille.bio}"/>
+			
+		<p:commandButton
+			value="Ajouter"
+			action="#{bouteilleController.ajouterNouvelleBouteille()}"
+			ajax = "false" />
+		</h:form>
+		
+	</h:body>
+	
+</html>
